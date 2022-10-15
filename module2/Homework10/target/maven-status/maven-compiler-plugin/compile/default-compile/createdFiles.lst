@@ -1,0 +1,3 @@
+models\User.class
+servlets\UserServlet.class
+servlets\MainPage.class
