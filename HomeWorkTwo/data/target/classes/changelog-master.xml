@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="toropizhka25@gmail.com">
+        <sql>
+            create table if not exists torop_dmitriy.receivers (
+            num int AUTO_INCREMENT PRIMARY KEY,
+            name varchar (255) unique
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="toropizhka25@gmail.com">
+        <sql>
+            create table if not exists torop_dmitriy.expenses (
+            num int AUTO_INCREMENT PRIMARY KEY,
+            paydate varchar (255),
+            receiver int,
+            value dec (10, 2),
+            FOREIGN KEY (receiver) REFERENCES torop_dmitriy.receivers(num)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="toropizhka25@gmail.com">
+        <sql>
+            insert into torop_dmitriy.receivers (num, name) values (1, 'Internet-Provider \"SOLO\"');
+            insert into torop_dmitriy.receivers (num, name) values (2, 'Hypermarket \"KORONA\"');
+            insert into torop_dmitriy.receivers (num, name) values (3, 'MTS');
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="toropizhka25@gmail.com">
+        <sql>
+            insert into torop_dmitriy.expenses (num, paydate, receiver, value) values (1, '10.05.2022', 1, 20);
+            insert into torop_dmitriy.expenses (num, paydate, receiver, value) values (2, '10.05.2022', 2, 94.2);
+            insert into torop_dmitriy.expenses (num, paydate, receiver, value) values (3, '11.05.2022', 3, 10);
+            insert into torop_dmitriy.expenses (num, paydate, receiver, value) values (4, '11.05.2022', 2, 12.95);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
